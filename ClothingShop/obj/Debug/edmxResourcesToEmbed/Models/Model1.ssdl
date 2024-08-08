@@ -1,0 +1,157 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ClothingStore1Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="admin">
+    <Key>
+      <PropertyRef Name="IDAd" />
+    </Key>
+    <Property Name="IDAd" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EmailAd" Type="nvarchar(max)" />
+    <Property Name="PasswordAd" Type="nvarchar(max)" />
+    <Property Name="AdminName" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="CategoryID" />
+    </Key>
+    <Property Name="CategoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CategoryName" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="IDCus" />
+    </Key>
+    <Property Name="IDCus" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EmailCus" Type="nvarchar(max)" />
+    <Property Name="Password" Type="nvarchar(max)" />
+    <Property Name="CustomerName" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="DonHang">
+    <Key>
+      <PropertyRef Name="IDOrder" />
+    </Key>
+    <Property Name="IDOrder" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IDCus" Type="int" />
+    <Property Name="DateOrder" Type="date" />
+    <Property Name="Address" Type="nvarchar(max)" />
+    <Property Name="Status" Type="int" />
+  </EntityType>
+  <EntityType Name="NSX">
+    <Key>
+      <PropertyRef Name="IDnsx" />
+    </Key>
+    <Property Name="IDnsx" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TenNSX" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="OrderDetails">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProductID" Type="int" />
+    <Property Name="IDOrder" Type="int" />
+    <Property Name="quantity" Type="int" />
+    <Property Name="UnitPrice" Type="decimal" Precision="18" Scale="0" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="ProductID" />
+    </Key>
+    <Property Name="ProductID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CategoryID" Type="int" />
+    <Property Name="IDnsx" Type="int" />
+    <Property Name="quantity" Type="int" />
+    <Property Name="ProductName" Type="nvarchar(max)" />
+    <Property Name="DecriptionPro" Type="nvarchar(max)" />
+    <Property Name="price" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="ImagePro" Type="nvarchar(max)" />
+  </EntityType>
+  <Association Name="FK_CategoryID">
+    <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+    <End Role="Product" Type="Self.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="CategoryID" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="CategoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_IDCus">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+    <End Role="DonHang" Type="Self.DonHang" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="IDCus" />
+      </Principal>
+      <Dependent Role="DonHang">
+        <PropertyRef Name="IDCus" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_IDOrder">
+    <End Role="DonHang" Type="Self.DonHang" Multiplicity="0..1" />
+    <End Role="OrderDetails" Type="Self.OrderDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DonHang">
+        <PropertyRef Name="IDOrder" />
+      </Principal>
+      <Dependent Role="OrderDetails">
+        <PropertyRef Name="IDOrder" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NSX">
+    <End Role="NSX" Type="Self.NSX" Multiplicity="0..1" />
+    <End Role="Product" Type="Self.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NSX">
+        <PropertyRef Name="IDnsx" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="IDnsx" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductID">
+    <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+    <End Role="OrderDetails" Type="Self.OrderDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ProductID" />
+      </Principal>
+      <Dependent Role="OrderDetails">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ClothingStore1ModelStoreContainer">
+    <EntitySet Name="admin" EntityType="Self.admin" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DonHang" EntityType="Self.DonHang" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NSX" EntityType="Self.NSX" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OrderDetails" EntityType="Self.OrderDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_CategoryID" Association="Self.FK_CategoryID">
+      <End Role="Category" EntitySet="Category" />
+      <End Role="Product" EntitySet="Product" />
+    </AssociationSet>
+    <AssociationSet Name="FK_IDCus" Association="Self.FK_IDCus">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="DonHang" EntitySet="DonHang" />
+    </AssociationSet>
+    <AssociationSet Name="FK_IDOrder" Association="Self.FK_IDOrder">
+      <End Role="DonHang" EntitySet="DonHang" />
+      <End Role="OrderDetails" EntitySet="OrderDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NSX" Association="Self.FK_NSX">
+      <End Role="NSX" EntitySet="NSX" />
+      <End Role="Product" EntitySet="Product" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductID" Association="Self.FK_ProductID">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="OrderDetails" EntitySet="OrderDetails" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ClothingStore1ModelStoreContainer" CdmEntityContainer="ClothingStore1Entities">
+    <EntitySetMapping Name="admins">
+      <EntityTypeMapping TypeName="ClothingStore1Model.admin">
+        <MappingFragment StoreEntitySet="admin">
+          <ScalarProperty Name="IDAd" ColumnName="IDAd" />
+          <ScalarProperty Name="EmailAd" ColumnName="EmailAd" />
+          <ScalarProperty Name="PasswordAd" ColumnName="PasswordAd" />
+          <ScalarProperty Name="AdminName" ColumnName="AdminName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Categories">
+      <EntityTypeMapping TypeName="ClothingStore1Model.Category">
+        <MappingFragment StoreEntitySet="Category">
+          <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+          <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Customers">
+      <EntityTypeMapping TypeName="ClothingStore1Model.Customer">
+        <MappingFragment StoreEntitySet="Customer">
+          <ScalarProperty Name="IDCus" ColumnName="IDCus" />
+          <ScalarProperty Name="EmailCus" ColumnName="EmailCus" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DonHangs">
+      <EntityTypeMapping TypeName="ClothingStore1Model.DonHang">
+        <MappingFragment StoreEntitySet="DonHang">
+          <ScalarProperty Name="IDOrder" ColumnName="IDOrder" />
+          <ScalarProperty Name="IDCus" ColumnName="IDCus" />
+          <ScalarProperty Name="DateOrder" ColumnName="DateOrder" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NSXes">
+      <EntityTypeMapping TypeName="ClothingStore1Model.NSX">
+        <MappingFragment StoreEntitySet="NSX">
+          <ScalarProperty Name="IDnsx" ColumnName="IDnsx" />
+          <ScalarProperty Name="TenNSX" ColumnName="TenNSX" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OrderDetails">
+      <EntityTypeMapping TypeName="ClothingStore1Model.OrderDetail">
+        <MappingFragment StoreEntitySet="OrderDetails">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+          <ScalarProperty Name="IDOrder" ColumnName="IDOrder" />
+          <ScalarProperty Name="quantity" ColumnName="quantity" />
+          <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Products">
+      <EntityTypeMapping TypeName="ClothingStore1Model.Product">
+        <MappingFragment StoreEntitySet="Product">
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+          <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+          <ScalarProperty Name="IDnsx" ColumnName="IDnsx" />
+          <ScalarProperty Name="quantity" ColumnName="quantity" />
+          <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+          <ScalarProperty Name="DecriptionPro" ColumnName="DecriptionPro" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="ImagePro" ColumnName="ImagePro" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
